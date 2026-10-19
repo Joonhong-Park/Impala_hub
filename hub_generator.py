@@ -506,16 +506,6 @@ $cluster_columns
 </div>
 </div>
 <div class="page-footer">$footer</div>
-<script>
-document.querySelectorAll('a[target="_blank"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    e.preventDefault();
-    var w=window.open(this.href,'_blank');
-    if(w){w.blur();}
-    window.focus();
-  });
-});
-</script>
 </body>
 </html>
 """)
