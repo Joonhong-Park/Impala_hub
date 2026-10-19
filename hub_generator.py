@@ -196,22 +196,14 @@ def _validate_url(url: str, ctx: str, errors: list[str]) -> None:
 
 # ── 렌더링 헬퍼 ──────────────────────────────────────────────────────────────
 
-def render_badge(tag: str | None, tag_styles: dict[str, str]) -> str:
-    if not tag:
-        return ""
-    style_name = tag_styles.get(tag, "default")
-    return f'<span class="badge badge-{e(style_name)}">{e(tag)}</span>'
-
-
 def render_link_row(lk: dict, tag_styles: dict[str, str]) -> str:
     url = lk["url"]
     label = lk["label"] or default_label(url)
     hp = host_port(url)
-    badge = render_badge(lk["tag"], tag_styles)
     return (
         f'<a class="link-row" href="{e(url)}" target="_blank" '
         f'rel="noopener noreferrer" title="{e(url)}">'
-        f'{badge}<span class="link-label">{e(label)}</span>'
+        f'<span class="link-label">{e(label)}</span>'
         f'<span class="link-host">{e(hp)}</span>'
         f"</a>"
     )
@@ -237,10 +229,12 @@ def render_common_card(item: dict, tag_styles: dict) -> str:
     rows = "\n".join(
         render_link_row(parse_link(r), tag_styles) for r in links_raw
     )
+    # 링크 5개 이상이면 2열 표시
+    links_class = "links-2col" if len(links_raw) >= 5 else "links-1col"
     return (
         f'<div class="common-card">'
         f'<div class="card-title">{e(svc)}</div>'
-        f"{rows}"
+        f'<div class="{links_class}">{rows}</div>'
         f"</div>"
     )
 
@@ -325,14 +319,17 @@ a { color: inherit; text-decoration: none; }
 
 /* ── 공통 서비스 ── */
 .common-section { margin-bottom: 14px; }
-.common-cards { display: flex; flex-wrap: wrap; gap: 6px; }
+.common-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 6px;
+}
 
 .common-card {
   background: #fff;
   border: 1px solid #e4e4e7;
   border-radius: 5px;
   padding: 6px 8px 5px;
-  min-width: 150px;
 }
 .card-title {
   font-size: 10px;
@@ -344,6 +341,12 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 3px;
   border-bottom: 1px solid #f4f4f5;
 }
+
+.links-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.links-1col { display: block; }
 
 /* ── 클러스터 그리드 ── */
 .cluster-grid {
@@ -433,25 +436,6 @@ a { color: inherit; text-decoration: none; }
   min-width: 0;
 }
 
-/* ── 배지 ── */
-.badge {
-  display: inline-block;
-  font-size: 9.5px;
-  padding: 0 4px;
-  border-radius: 3px;
-  font-weight: 700;
-  flex-shrink: 0;
-  line-height: 15px;
-  letter-spacing: .02em;
-}
-/* primary=운영/blue, secondary=개발/green, warning=스테이징/amber,
-   danger=긴급/red, info=모니터링/indigo, default=기타/grey */
-.badge-primary   { background: #dbeafe; color: #1d4ed8; }
-.badge-secondary { background: #dcfce7; color: #15803d; }
-.badge-warning   { background: #fef3c7; color: #b45309; }
-.badge-danger    { background: #fee2e2; color: #b91c1c; }
-.badge-info      { background: #e0e7ff; color: #4338ca; }
-.badge-default   { background: #f4f4f5; color: #52525b; }
 
 /* ── 푸터 ── */
 .page-footer {

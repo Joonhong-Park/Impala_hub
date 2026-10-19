@@ -33,6 +33,21 @@ common:
       - url: https://nifi2.example.com:8443/nifi
         label: nifi2
         tag: prod
+      - url: https://nifi3.example.com:8443/nifi
+        label: nifi3
+        tag: prod
+      - url: https://nifi4.example.com:8443/nifi
+        label: nifi4
+        tag: prod
+      - url: https://nifi5.example.com:8443/nifi
+        label: nifi5
+        tag: prod
+      - url: https://nifi6.example.com:8443/nifi
+        label: nifi6
+        tag: prod
+      - url: https://nifi7.example.com:8443/nifi
+        label: nifi7
+        tag: prod
 
   - service: Airflow
     links:
