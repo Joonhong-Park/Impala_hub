@@ -102,8 +102,9 @@ def validate(cfg: dict) -> None:
             errors.append(f"common['{svc}']: links가 비어 있습니다.")
         for raw in links:
             lk = parse_link(raw)
-            _validate_url(lk["url"], f"common['{svc}']", errors)
-            all_urls.append(lk["url"])
+            _validate_url(lk["url"], f"common['{svc}']", errors, warnings)
+            if lk["url"]:
+                all_urls.append(lk["url"])
 
     # clusters 검증
     clusters = cfg.get("clusters")
@@ -143,8 +144,9 @@ def validate(cfg: dict) -> None:
                     )
                 for raw in links:
                     lk = parse_link(raw)
-                    _validate_url(lk["url"], f"clusters['{cname}']['{svc}']", errors)
-                    all_urls.append(lk["url"])
+                    _validate_url(lk["url"], f"clusters['{cname}']['{svc}']", errors, warnings)
+                    if lk["url"]:
+                        all_urls.append(lk["url"])
 
             for req in required_norm:
                 if req not in svc_names_in_cluster:
@@ -181,13 +183,15 @@ def validate(cfg: dict) -> None:
         sys.exit(1)
 
 
-def _validate_url(url: str, ctx: str, errors: list[str]) -> None:
+def _validate_url(url: str, ctx: str, errors: list[str], warnings: list[str]) -> None:
     if not url:
         errors.append(f"{ctx}: URL이 비어 있습니다.")
         return
     parsed = urlparse(url)
-    if parsed.scheme != "https":
-        errors.append(f"{ctx}: https가 아닙니다 — '{url}'")
+    if parsed.scheme not in ("http", "https"):
+        errors.append(f"{ctx}: http/https가 아닙니다 — '{url}'")
+    if parsed.scheme == "http":
+        warnings.append(f"{ctx}: http 사용 중 — '{url}'")
     if not parsed.hostname:
         errors.append(f"{ctx}: 호스트가 없습니다 — '{url}'")
 

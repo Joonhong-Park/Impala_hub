@@ -65,9 +65,11 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-a.example.com:7183
+            label: cm-a
       - service: Ranger
         links:
           - url: https://ranger-a.example.com:6182
+            label: ranger-a
       - service: Hue
         links:
           - url: https://hue-lb-a.example.com:8889
@@ -97,9 +99,11 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-b.example.com:7183
+            label: cm-b
       - service: Ranger
         links:
           - url: https://ranger-b.example.com:6182
+            label: ranger-b
       - service: Hue
         links:
           - url: https://hue-lb-b.example.com:8889
@@ -131,9 +135,11 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-c.example.com:7183
+            label: cm-c
       - service: Ranger
         links:
           - url: https://ranger-c.example.com:6182
+            label: ranger-c
       - service: Hue
         links:
           - url: https://hue-lb-c.example.com:8889
@@ -167,9 +173,11 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-d.example.com:7183
+            label: cm-d
       - service: Ranger
         links:
           - url: https://ranger-d.example.com:6182
+            label: ranger-d
       - service: YARN ResourceManager
         links:
           - url: https://rm1-d.example.com:8090
@@ -193,9 +201,11 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-e.example.com:7183
+            label: cm-e
       - service: Ranger
         links:
           - url: https://ranger-e.example.com:6182
+            label: ranger-e
       - service: Hue
         links:
           - url: https://hue-e.example.com:8888
