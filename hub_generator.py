@@ -229,7 +229,7 @@ def render_cluster_link_row(lk: dict) -> str:
     )
 
 
-def render_service_group(svc_name: str, links_raw: list, tag_styles: dict) -> str:
+def render_service_group(svc_name: str, links_raw: list) -> str:
     count = len(links_raw)
     rows = "\n".join(
         render_cluster_link_row(parse_link(r)) for r in links_raw
@@ -279,7 +279,7 @@ def render_cluster_column(cl: dict, service_order_raw: list[str], tag_styles: di
             ordered.append(s)
 
     groups = "\n".join(
-        render_service_group(s["service"], s.get("links") or [], tag_styles)
+        render_service_group(s["service"], s.get("links") or [])
         for s in ordered
     )
     desc_html = f'<div class="cluster-desc">{e(desc)}</div>' if desc else ""

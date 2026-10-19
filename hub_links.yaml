@@ -65,33 +65,24 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-a.example.com:7183
-            label: cm-a
       - service: Ranger
         links:
           - url: https://ranger-a.example.com:6182
-            label: ranger-a
       - service: Hue
         links:
           - url: https://hue-lb-a.example.com:8889
-            label: Hue LB
       - service: YARN ResourceManager
         links:
           - url: https://rm1-a.example.com:8090
-            label: rm1
           - url: https://rm2-a.example.com:8090
-            label: rm2
       - service: Impala Coordinator (Refresh)
         links:
           - url: https://impala-refresh-a.example.com:25000
-            label: coord-refresh
       - service: Impala Coordinator (User)
         links:
           - url: https://impala-user1-a.example.com:25000
-            label: coord-user1
           - url: https://impala-user2-a.example.com:25000
-            label: coord-user2
           - url: https://impala-user3-a.example.com:25000
-            label: coord-user3
 
   - name: CLUSTER-B
     description: 운영 클러스터 B
@@ -99,35 +90,25 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-b.example.com:7183
-            label: cm-b
       - service: Ranger
         links:
           - url: https://ranger-b.example.com:6182
-            label: ranger-b
       - service: Hue
         links:
           - url: https://hue-lb-b.example.com:8889
-            label: Hue LB
       - service: YARN ResourceManager
         links:
           - url: https://rm1-b.example.com:8090
-            label: rm1
           - url: https://rm2-b.example.com:8090
-            label: rm2
       - service: Impala Coordinator (Refresh)
         links:
           - url: https://impala-refresh-b.example.com:25000
-            label: coord-refresh
       - service: Impala Coordinator (User)
         links:
           - url: https://impala-user1-b.example.com:25000
-            label: coord-user1
           - url: https://impala-user2-b.example.com:25000
-            label: coord-user2
           - url: https://impala-user3-b.example.com:25000
-            label: coord-user3
           - url: https://impala-user4-b.example.com:25000
-            label: coord-user4
 
   - name: CLUSTER-C
     description: 운영 클러스터 C
@@ -135,37 +116,26 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-c.example.com:7183
-            label: cm-c
       - service: Ranger
         links:
           - url: https://ranger-c.example.com:6182
-            label: ranger-c
       - service: Hue
         links:
           - url: https://hue-lb-c.example.com:8889
-            label: Hue LB
       - service: YARN ResourceManager
         links:
           - url: https://rm1-c.example.com:8090
-            label: rm1
           - url: https://rm2-c.example.com:8090
-            label: rm2
       - service: Impala Coordinator (Refresh)
         links:
           - url: https://impala-refresh-c.example.com:25000
-            label: coord-refresh
       - service: Impala Coordinator (User)
         links:
           - url: https://impala-user1-c.example.com:25000
-            label: coord-user1
           - url: https://impala-user2-c.example.com:25000
-            label: coord-user2
           - url: https://impala-user3-c.example.com:25000
-            label: coord-user3
           - url: https://impala-user4-c.example.com:25000
-            label: coord-user4
           - url: https://impala-user5-c.example.com:25000
-            label: coord-user5
 
   - name: CLUSTER-D
     description: 운영 클러스터 D
@@ -173,27 +143,20 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-d.example.com:7183
-            label: cm-d
       - service: Ranger
         links:
           - url: https://ranger-d.example.com:6182
-            label: ranger-d
       - service: YARN ResourceManager
         links:
           - url: https://rm1-d.example.com:8090
-            label: rm1
           - url: https://rm2-d.example.com:8090
-            label: rm2
       - service: Impala Coordinator (Refresh)
         links:
           - url: https://impala-refresh-d.example.com:25000
-            label: coord-refresh
       - service: Impala Coordinator (User)
         links:
           - url: https://impala-user1-d.example.com:25000
-            label: coord-user1
           - url: https://impala-user2-d.example.com:25000
-            label: coord-user2
 
   - name: CLUSTER-E
     description: 개발 클러스터
@@ -201,30 +164,21 @@ clusters:
       - service: Cloudera Manager
         links:
           - url: https://cm-e.example.com:7183
-            label: cm-e
       - service: Ranger
         links:
           - url: https://ranger-e.example.com:6182
-            label: ranger-e
       - service: Hue
         links:
           - url: https://hue-e.example.com:8888
-            label: Hue
       - service: YARN ResourceManager
         links:
           - url: https://rm1-e.example.com:8090
-            label: rm1
           - url: https://rm2-e.example.com:8090
-            label: rm2
       - service: Impala Coordinator (Refresh)
         links:
           - url: https://impala-refresh-e.example.com:25000
-            label: coord-refresh
       - service: Impala Coordinator (User)
         links:
           - url: https://impala-user1-e.example.com:25000
-            label: coord-user1
           - url: https://impala-user2-e.example.com:25000
-            label: coord-user2
           - url: https://impala-user3-e.example.com:25000
-            label: coord-user3
