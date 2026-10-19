@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/impala_hub
-ExecStart=python3 -m http.server 8080
+ExecStart=python3 -m http.server 9292
 Restart=always
 RestartSec=5
 
