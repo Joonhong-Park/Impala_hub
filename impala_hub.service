@@ -1,0 +1,12 @@
+[Unit]
+Description=Bigdata Platform Hub
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/impala_hub
+ExecStart=python3 -m http.server 8080
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

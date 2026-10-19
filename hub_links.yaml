@@ -1,0 +1,205 @@
+title: "Bigdata Platform Hub"
+
+service_order:
+  - Cloudera Manager
+  - Ranger
+  - Hue
+  - YARN ResourceManager
+  - Impala Coordinator (Refresh)
+  - Impala Coordinator (User)
+
+required_services:
+  - Cloudera Manager
+
+tag_styles:
+  prod: primary
+  dev: secondary
+
+common:
+  - service: Grafana
+    links:
+      - url: https://grafana.example.com:3000
+        label: 운영 모니터링
+        tag: prod
+      - url: https://grafana-dev.example.com:3000
+        label: 개발 모니터링
+        tag: dev
+
+  - service: NiFi
+    links:
+      - url: https://nifi1.example.com:8443/nifi
+        label: nifi1
+        tag: prod
+      - url: https://nifi2.example.com:8443/nifi
+        label: nifi2
+        tag: prod
+
+  - service: Airflow
+    links:
+      - url: https://airflow.example.com:8080
+        label: 운영
+        tag: prod
+      - url: https://airflow-dev.example.com:8080
+        label: 개발
+        tag: dev
+
+clusters:
+  - name: CLUSTER-A
+    description: 운영 클러스터 A
+    services:
+      - service: Cloudera Manager
+        links:
+          - url: https://cm-a.example.com:7183
+      - service: Ranger
+        links:
+          - url: https://ranger-a.example.com:6182
+      - service: Hue
+        links:
+          - url: https://hue-lb-a.example.com:8889
+            label: Hue LB
+      - service: YARN ResourceManager
+        links:
+          - url: https://rm1-a.example.com:8090
+            label: rm1
+          - url: https://rm2-a.example.com:8090
+            label: rm2
+      - service: Impala Coordinator (Refresh)
+        links:
+          - url: https://impala-refresh-a.example.com:25000
+            label: coord-refresh
+      - service: Impala Coordinator (User)
+        links:
+          - url: https://impala-user1-a.example.com:25000
+            label: coord-user1
+          - url: https://impala-user2-a.example.com:25000
+            label: coord-user2
+          - url: https://impala-user3-a.example.com:25000
+            label: coord-user3
+
+  - name: CLUSTER-B
+    description: 운영 클러스터 B
+    services:
+      - service: Cloudera Manager
+        links:
+          - url: https://cm-b.example.com:7183
+      - service: Ranger
+        links:
+          - url: https://ranger-b.example.com:6182
+      - service: Hue
+        links:
+          - url: https://hue-lb-b.example.com:8889
+            label: Hue LB
+      - service: YARN ResourceManager
+        links:
+          - url: https://rm1-b.example.com:8090
+            label: rm1
+          - url: https://rm2-b.example.com:8090
+            label: rm2
+      - service: Impala Coordinator (Refresh)
+        links:
+          - url: https://impala-refresh-b.example.com:25000
+            label: coord-refresh
+      - service: Impala Coordinator (User)
+        links:
+          - url: https://impala-user1-b.example.com:25000
+            label: coord-user1
+          - url: https://impala-user2-b.example.com:25000
+            label: coord-user2
+          - url: https://impala-user3-b.example.com:25000
+            label: coord-user3
+          - url: https://impala-user4-b.example.com:25000
+            label: coord-user4
+
+  - name: CLUSTER-C
+    description: 운영 클러스터 C
+    services:
+      - service: Cloudera Manager
+        links:
+          - url: https://cm-c.example.com:7183
+      - service: Ranger
+        links:
+          - url: https://ranger-c.example.com:6182
+      - service: Hue
+        links:
+          - url: https://hue-lb-c.example.com:8889
+            label: Hue LB
+      - service: YARN ResourceManager
+        links:
+          - url: https://rm1-c.example.com:8090
+            label: rm1
+          - url: https://rm2-c.example.com:8090
+            label: rm2
+      - service: Impala Coordinator (Refresh)
+        links:
+          - url: https://impala-refresh-c.example.com:25000
+            label: coord-refresh
+      - service: Impala Coordinator (User)
+        links:
+          - url: https://impala-user1-c.example.com:25000
+            label: coord-user1
+          - url: https://impala-user2-c.example.com:25000
+            label: coord-user2
+          - url: https://impala-user3-c.example.com:25000
+            label: coord-user3
+          - url: https://impala-user4-c.example.com:25000
+            label: coord-user4
+          - url: https://impala-user5-c.example.com:25000
+            label: coord-user5
+
+  - name: CLUSTER-D
+    description: 운영 클러스터 D
+    services:
+      - service: Cloudera Manager
+        links:
+          - url: https://cm-d.example.com:7183
+      - service: Ranger
+        links:
+          - url: https://ranger-d.example.com:6182
+      - service: YARN ResourceManager
+        links:
+          - url: https://rm1-d.example.com:8090
+            label: rm1
+          - url: https://rm2-d.example.com:8090
+            label: rm2
+      - service: Impala Coordinator (Refresh)
+        links:
+          - url: https://impala-refresh-d.example.com:25000
+            label: coord-refresh
+      - service: Impala Coordinator (User)
+        links:
+          - url: https://impala-user1-d.example.com:25000
+            label: coord-user1
+          - url: https://impala-user2-d.example.com:25000
+            label: coord-user2
+
+  - name: CLUSTER-E
+    description: 개발 클러스터
+    services:
+      - service: Cloudera Manager
+        links:
+          - url: https://cm-e.example.com:7183
+      - service: Ranger
+        links:
+          - url: https://ranger-e.example.com:6182
+      - service: Hue
+        links:
+          - url: https://hue-e.example.com:8888
+            label: Hue
+      - service: YARN ResourceManager
+        links:
+          - url: https://rm1-e.example.com:8090
+            label: rm1
+          - url: https://rm2-e.example.com:8090
+            label: rm2
+      - service: Impala Coordinator (Refresh)
+        links:
+          - url: https://impala-refresh-e.example.com:25000
+            label: coord-refresh
+      - service: Impala Coordinator (User)
+        links:
+          - url: https://impala-user1-e.example.com:25000
+            label: coord-user1
+          - url: https://impala-user2-e.example.com:25000
+            label: coord-user2
+          - url: https://impala-user3-e.example.com:25000
+            label: coord-user3
