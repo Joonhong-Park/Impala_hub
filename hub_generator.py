@@ -219,10 +219,20 @@ def render_link_row(lk: dict, tag_styles: dict[str, str]) -> str:
     )
 
 
+def render_cluster_link_row(lk: dict) -> str:
+    url = lk["url"]
+    return (
+        f'<a class="link-row" href="{e(url)}" target="_blank" '
+        f'rel="noopener noreferrer" title="{e(url)}">'
+        f'<span class="link-url">{e(url)}</span>'
+        f"</a>"
+    )
+
+
 def render_service_group(svc_name: str, links_raw: list, tag_styles: dict) -> str:
     count = len(links_raw)
     rows = "\n".join(
-        render_link_row(parse_link(r), tag_styles) for r in links_raw
+        render_cluster_link_row(parse_link(r)) for r in links_raw
     )
     return (
         f'<div class="service-group">'
@@ -300,7 +310,7 @@ PAGE_TEMPLATE = Template("""\
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.45;
   background: #f4f4f5;
   color: #18181b;
@@ -310,7 +320,7 @@ a { color: inherit; text-decoration: none; }
 
 /* 헤더 */
 .page-header {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: #09090b;
   margin-bottom: 14px;
@@ -319,7 +329,7 @@ a { color: inherit; text-decoration: none; }
 
 /* 영역 구분 라벨 */
 .section-label {
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -342,7 +352,7 @@ a { color: inherit; text-decoration: none; }
   padding: 6px 8px 5px;
 }
 .card-title {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   color: #71717a;
   text-transform: uppercase;
@@ -355,7 +365,7 @@ a { color: inherit; text-decoration: none; }
 /* ── 배지 ── */
 .badge {
   display: inline-block;
-  font-size: 9.5px;
+  font-size: 11px;
   padding: 0 4px;
   border-radius: 3px;
   font-weight: 700;
@@ -388,13 +398,13 @@ a { color: inherit; text-decoration: none; }
   background: #fafafa;
 }
 .cluster-name {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: #09090b;
   letter-spacing: -.01em;
 }
 .cluster-desc {
-  font-size: 10.5px;
+  font-size: 12px;
   color: #a1a1aa;
   margin-top: 1px;
   white-space: nowrap;
@@ -410,7 +420,7 @@ a { color: inherit; text-decoration: none; }
 .service-group:last-child { border-bottom: none; }
 
 .service-title {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   color: #71717a;
   text-transform: uppercase;
@@ -423,7 +433,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 1px;
 }
 .link-count {
-  font-size: 9.5px;
+  font-size: 11px;
   color: #d4d4d8;
   font-weight: 500;
 }
@@ -443,12 +453,21 @@ a { color: inherit; text-decoration: none; }
 
 .link-label {
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #2563eb;
 }
+.link-url {
+  font-size: 13px;
+  color: #2563eb;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
 .link-host {
-  font-size: 10.5px;
+  font-size: 12px;
   color: #a1a1aa;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -460,7 +479,7 @@ a { color: inherit; text-decoration: none; }
 /* ── 푸터 ── */
 .page-footer {
   margin-top: 16px;
-  font-size: 10.5px;
+  font-size: 12px;
   color: #d4d4d8;
   text-align: right;
 }

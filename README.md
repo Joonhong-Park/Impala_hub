@@ -8,7 +8,7 @@ Cloudera CDP 클러스터와 공통 서비스(Grafana, NiFi, Airflow 등)의 웹
 |---|---|
 | `hub_links.yaml` | 클러스터·서비스·URL 정의 (유일한 수정 대상) |
 | `hub_generator.py` | YAML 검증 후 `index.html` 생성 |
-| `impala_hub.service` | systemd 서비스 파일 (python http.server, 포트 9292) |
+| `impala_hub.conf` | nginx 설정 파일 (포트 9292) |
 
 ## 설치
 
@@ -20,10 +20,9 @@ pip3 install pyyaml
 mkdir -p /opt/impala_hub
 cp hub_generator.py hub_links.yaml /opt/impala_hub/
 
-# 서비스 등록
-cp impala_hub.service /etc/systemd/system/
-systemctl daemon-reload
-systemctl enable --now impala_hub
+# nginx 설정
+cp impala_hub.conf /etc/nginx/conf.d/
+nginx -t && systemctl reload nginx
 ```
 
 접속: `http://서버주소:9292`
@@ -81,5 +80,5 @@ clusters:               # 클러스터 목록 (YAML 순서 = 컬럼 순서)
 
 | 구분 | 내용 |
 |---|---|
-| 오류 (exit 1) | https 아닌 URL, 클러스터/서비스 이름 중복, 빈 links, 필수 서비스 누락, 허용되지 않는 tag 스타일 |
-| 경고 (계속 진행) | service_order에만 있고 클러스터에 없는 서비스, URL 중복 |
+| 오류 (exit 1) | 클러스터/서비스 이름 중복, 빈 URL, 빈 links, 필수 서비스 누락, 허용되지 않는 tag 스타일 |
+| 경고 (계속 진행) | http URL 사용, service_order에만 있고 클러스터에 없는 서비스, URL 중복 |
