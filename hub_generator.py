@@ -17,8 +17,7 @@ from urllib.parse import urlparse
 import yaml
 
 # tag_styles에서 허용하는 스타일 이름 목록
-# primary=운영/중요, secondary=개발/보조, warning=스테이징/주의, danger=긴급/특별, info=모니터링/정보
-ALLOWED_STYLES = {"primary", "secondary", "warning", "danger", "info"}
+ALLOWED_STYLES = {"primary", "secondary"}
 
 DEFAULT_TITLE = "Bigdata Platform Hub"
 DEFAULT_SERVICE_ORDER: list[str] = [
@@ -83,7 +82,6 @@ def validate(cfg: dict) -> None:
             )
 
     service_order_raw: list[str] = cfg.get("service_order") or DEFAULT_SERVICE_ORDER
-    service_order_norm = [normalize(s) for s in service_order_raw]
     required_norm = {normalize(s) for s in (cfg.get("required_services") or [])}
 
     all_urls: list[str] = []
@@ -196,14 +194,22 @@ def _validate_url(url: str, ctx: str, errors: list[str]) -> None:
 
 # ── 렌더링 헬퍼 ──────────────────────────────────────────────────────────────
 
+def render_badge(tag: str | None, tag_styles: dict[str, str]) -> str:
+    if not tag:
+        return ""
+    style_name = tag_styles.get(tag, "default")
+    return f'<span class="badge badge-{e(style_name)}">{e(tag)}</span>'
+
+
 def render_link_row(lk: dict, tag_styles: dict[str, str]) -> str:
     url = lk["url"]
     label = lk["label"] or default_label(url)
     hp = host_port(url)
+    badge = render_badge(lk["tag"], tag_styles)
     return (
         f'<a class="link-row" href="{e(url)}" target="_blank" '
         f'rel="noopener noreferrer" title="{e(url)}">'
-        f'<span class="link-label">{e(label)}</span>'
+        f'{badge}<span class="link-label">{e(label)}</span>'
         f'<span class="link-host">{e(hp)}</span>'
         f"</a>"
     )
@@ -342,11 +348,22 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid #f4f4f5;
 }
 
-.links-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* ── 배지 ── */
+.badge {
+  display: inline-block;
+  font-size: 9.5px;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 15px;
+  letter-spacing: .02em;
 }
-.links-1col { display: block; }
+.badge-primary   { background: #dbeafe; color: #1d4ed8; }
+.badge-secondary { background: #dcfce7; color: #15803d; }
+.badge-default   { background: #f4f4f5; color: #52525b; }
+
+.links-2col { display: grid; grid-template-columns: 1fr 1fr; }
 
 /* ── 클러스터 그리드 ── */
 .cluster-grid {
@@ -436,7 +453,6 @@ a { color: inherit; text-decoration: none; }
   min-width: 0;
 }
 
-
 /* ── 푸터 ── */
 .page-footer {
   margin-top: 16px;
@@ -454,7 +470,6 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 380px) {
   .cluster-grid { grid-template-columns: 1fr; }
-  .common-card { min-width: 100%; }
 }
 </style>
 </head>
