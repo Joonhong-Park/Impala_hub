@@ -510,7 +510,8 @@ $cluster_columns
 document.querySelectorAll('a[target="_blank"]').forEach(function(a){
   a.addEventListener('click',function(e){
     e.preventDefault();
-    window.open(this.href,'_blank');
+    var w=window.open(this.href,'_blank');
+    if(w){w.blur();}
     window.focus();
   });
 });
