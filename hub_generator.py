@@ -349,6 +349,8 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid #e4e4e7;
   border-radius: 5px;
   padding: 6px 8px 5px;
+  min-width: 0;
+  overflow: hidden;
 }
 .card-title {
   font-size: 14px;
