@@ -352,14 +352,14 @@ a { color: inherit; text-decoration: none; }
   padding: 6px 8px 5px;
 }
 .card-title {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
-  color: #71717a;
+  color: #52525b;
   text-transform: uppercase;
-  letter-spacing: .06em;
+  letter-spacing: .05em;
   margin-bottom: 3px;
   padding-bottom: 3px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid #e4e4e7;
 }
 
 /* ── 배지 ── */
@@ -414,7 +414,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── 서비스 그룹 ── */
 .service-group {
-  padding: 4px 8px 3px;
+  padding: 7px 8px 5px;
   border-bottom: 1px solid #d4d4d8;
 }
 .service-group:last-child { border-bottom: none; }
