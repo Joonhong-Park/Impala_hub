@@ -19,7 +19,7 @@ import yaml
 # tag_styles에서 허용하는 스타일 이름 목록
 ALLOWED_STYLES = {"primary", "secondary"}
 
-DEFAULT_TITLE = "Bigdata Platform Hub"
+DEFAULT_TITLE = "Impala Hub"
 DEFAULT_SERVICE_ORDER: list[str] = [
     "Cloudera Manager",
     "Ranger",
@@ -415,21 +415,21 @@ a { color: inherit; text-decoration: none; }
 /* ── 서비스 그룹 ── */
 .service-group {
   padding: 4px 8px 3px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid #d4d4d8;
 }
 .service-group:last-child { border-bottom: none; }
 
 .service-title {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
-  color: #71717a;
+  color: #52525b;
   text-transform: uppercase;
   letter-spacing: .05em;
   padding: 2px 0 2px;
   display: flex;
   align-items: center;
   gap: 4px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid #e4e4e7;
   margin-bottom: 1px;
 }
 .link-count {
@@ -443,9 +443,9 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 1px 3px;
+  padding: 3px 3px;
   border-radius: 3px;
-  min-height: 20px;
+  min-height: 24px;
   overflow: hidden;
 }
 .link-row:hover { background: #eff6ff; }
