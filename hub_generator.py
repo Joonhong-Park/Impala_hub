@@ -341,7 +341,6 @@ a { color: inherit; text-decoration: none; }
 .common-section { margin-bottom: 14px; }
 .common-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 6px;
 }
 
@@ -521,10 +520,14 @@ def build_html(cfg: dict, config_filename: str) -> str:
     # 공통 서비스 영역
     if common:
         cards = "\n".join(render_common_card(item, tag_styles) for item in common)
+        # 마지막 카드(NiFi 등)가 나머지 너비를 차지, 앞 카드는 각 1/5
+        n = len(common)
+        last_fr = max(1, 5 - (n - 1))
+        cols = " ".join(["1fr"] * (n - 1) + [f"{last_fr}fr"])
         common_section = (
             '<div class="common-section">'
             '<div class="section-label">Common Services</div>'
-            f'<div class="common-cards">{cards}</div>'
+            f'<div class="common-cards" style="grid-template-columns:{cols}">{cards}</div>'
             "</div>"
         )
     else:

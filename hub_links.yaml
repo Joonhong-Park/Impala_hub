@@ -25,6 +25,15 @@ common:
         label: 개발 모니터링
         tag: dev
 
+  - service: Airflow
+    links:
+      - url: https://airflow.example.com:8080
+        label: 운영
+        tag: prod
+      - url: https://airflow-dev.example.com:8080
+        label: 개발
+        tag: dev
+
   - service: NiFi
     links:
       - url: https://nifi1.example.com:8443/nifi
@@ -48,15 +57,6 @@ common:
       - url: https://nifi7.example.com:8443/nifi
         label: nifi7
         tag: prod
-
-  - service: Airflow
-    links:
-      - url: https://airflow.example.com:8080
-        label: 운영
-        tag: prod
-      - url: https://airflow-dev.example.com:8080
-        label: 개발
-        tag: dev
 
 clusters:
   - name: CLUSTER-A
